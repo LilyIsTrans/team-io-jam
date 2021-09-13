@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverHeight: 3
+  hoverStrength: 1
   maxAccel: 30
   road: {fileID: 510148576}
 --- !u!54 &30965367
