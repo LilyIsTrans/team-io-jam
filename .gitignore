@@ -1,3 +1,5 @@
 
 io-racer/Library/ArtifactDB
 io-racer/Library/Artifacts/
+*.log
+io-racer/Logs/
