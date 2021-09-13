@@ -6,6 +6,8 @@ public class cubeMove : MonoBehaviour
 {
     // Start is called before the first frame update
     float accel = 0f;
+    public float hoverHeight;
+    public float maxAccel;
     public GameObject road;
 
     void Start()
@@ -16,7 +18,7 @@ public class cubeMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        accel = Input.GetAxis("Accelerator") * 30;
+        accel = Input.GetAxis("Accelerator") * maxAccel;
         GetComponent<Rigidbody>().velocity = this.transform.forward*accel;
 
         
@@ -27,7 +29,19 @@ public class cubeMove : MonoBehaviour
     }
 
     void roadFollow(){
-        print(road.transform.position.z);
-//        this.transform.Translate(new Vector3(0, 0, road.transform.position.z));
+        RaycastHit hit;
+        float roadY;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        {
+            roadY = hit.point.y;
+            Vector3 Position = this.GetComponent<Transform>().position;
+            this.GetComponent<Transform>().position = new Vector3(Position.x, roadY + hoverHeight, Position.z);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000, Color.white);
+            Debug.Log("Did not Hit");
+        }
     }
 }
