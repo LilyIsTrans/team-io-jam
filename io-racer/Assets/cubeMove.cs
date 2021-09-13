@@ -14,7 +14,7 @@ public class cubeMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         accel = Input.GetAxis("Accelerator") * 30;
         GetComponent<Rigidbody>().velocity = this.transform.forward*accel;
